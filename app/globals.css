@@ -1,0 +1,165 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Custom Design System Colors */
+  --background: #0A0A0F;
+  --background-secondary: #12121A;
+  --foreground: #FFFFFF;
+  --primary: #00FF87;
+  --primary-foreground: #0A0A0F;
+  --secondary: #00D4FF;
+  --secondary-foreground: #0A0A0F;
+  --muted: #12121A;
+  --muted-foreground: #A1A1AA;
+  --accent: #00FF87;
+  --accent-foreground: #0A0A0F;
+  --card: #12121A;
+  --card-foreground: #FFFFFF;
+  --popover: #12121A;
+  --popover-foreground: #FFFFFF;
+  --border: rgba(255,255,255,0.08);
+  --input: rgba(255,255,255,0.08);
+  --ring: #00FF87;
+  --destructive: #FF4444;
+  --destructive-foreground: #FFFFFF;
+  --radius: 0.75rem;
+  
+  /* Neon glow colors */
+  --glow-primary: rgba(0, 255, 135, 0.4);
+  --glow-secondary: rgba(0, 212, 255, 0.4);
+}
+
+@theme inline {
+  --font-sans: 'Manrope', sans-serif;
+  --font-heading: 'Bebas Neue', sans-serif;
+  --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-glow-primary: var(--glow-primary);
+  --color-glow-secondary: var(--glow-secondary);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Grain texture overlay */
+.grain {
+  position: relative;
+}
+
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Neon glow effects */
+.glow-primary {
+  box-shadow: 0 0 20px var(--glow-primary), 0 0 40px var(--glow-primary);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 20px var(--glow-secondary), 0 0 40px var(--glow-secondary);
+}
+
+.glow-text-primary {
+  text-shadow: 0 0 20px var(--glow-primary), 0 0 40px var(--glow-primary);
+}
+
+.glow-text-secondary {
+  text-shadow: 0 0 20px var(--glow-secondary), 0 0 40px var(--glow-secondary);
+}
+
+/* Shimmer effect for buttons */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.shimmer:hover::after {
+  transform: translateX(100%);
+}
+
+/* Mesh gradient backgrounds */
+.mesh-gradient {
+  background: 
+    radial-gradient(at 40% 20%, rgba(0, 255, 135, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(0, 212, 255, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(0, 255, 135, 0.08) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, rgba(0, 212, 255, 0.08) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(0, 255, 135, 0.1) 0px, transparent 50%),
+    var(--background);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(0, 255, 135, 0.3);
+  color: #FFFFFF;
+}
