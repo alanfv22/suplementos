@@ -112,7 +112,7 @@ export async function POST(request: Request) {
           failure: `${baseUrl}/pago-fallido`,
           pending: `${baseUrl}/pago-pendiente`,
         },
-        notification_url: 'https://alanfv.app.n8n.cloud/webhook-test/9020ea8f-3ce8-41d8-8862-e64a038faa08',
+        notification_url: 'https://alanfv.app.n8n.cloud/webhook/9020ea8f-3ce8-41d8-8862-e64a038faa08',
         ...(baseUrl.includes('localhost') ? {} : { auto_return: 'approved' }),
       },
     })
